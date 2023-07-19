@@ -1,0 +1,46 @@
+<div class="drawer-container" cdkDropListGroup>
+  <div class="form-field-list-container" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="formFieldList">
+    <div class="draggable-form-field-box" cdkDrag *ngFor="let item of formFieldList">
+      {{item.label}}
+    </div>
+  </div>
+  <div class="generated-form-wrapper">
+
+
+    <div cdkDropList [cdkDropListData]="dropData" class="generated-form-group-wrapper"
+      (cdkDropListDropped)="drop($event)" [formGroup]="formGroup">
+      <div class="info-massage" *ngIf="!dropData?.length">
+        Please drag and drop formFields in this area to begin
+      </div>
+      <div class="generated-form-group" *ngFor="let item of dropData; let index = index" cdkDrag>
+
+        <ng-container *ngIf="formGroup.get([item.id])" [formGroupName]="item.id">
+          <mat-form-field>
+            <input matInput formControlName="formLabel" type="text">
+          </mat-form-field>
+          <mat-form-field [ngSwitch]="item.fieldType">
+            <mat-label>{{item.label}}</mat-label>
+            <input matInput *ngSwitchCase="'input'" [formControlName]="item.label" [type]="item.type ?? ''">
+            <textarea *ngSwitchCase="'textarea'" matInput placeholder="{{item.label}}"
+              [formControlName]="item.label"></textarea>
+          </mat-form-field>
+        </ng-container>
+
+
+        <div class="move-handle" cdkDragHandle>
+          <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+            </path>
+            <path d="M0 0h24v24H0z" fill="none"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="handleOnExport($event)">Export as JSON</button>
+      <button mat-raised-button color="primary" (click)="handleOnImport($event)">Get Form</button>
+    </div>
+    <input #importInputFile id='importInputFile' type='file' accept="application/JSON" hidden (change)="handleFileChange($event)" />
+  </div>
+</div>

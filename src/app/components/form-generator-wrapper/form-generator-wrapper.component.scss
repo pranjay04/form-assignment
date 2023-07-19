@@ -1,0 +1,114 @@
+.drawer-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .form-field-list-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background-color: aquamarine;
+    padding: 1rem;
+  }
+}
+
+.draggable-form-field-box {
+  width: 100%;
+  height: 100px;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: move;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  margin-right: 25px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.draggable-form-field-box:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-preview {
+  @extend .draggable-form-field-box;
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+
+.generated-form-wrapper {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.generated-form-group-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px;
+
+  min-height: 600px;
+  min-width: 300px;
+  background-color: blueviolet;
+  overflow: auto;
+}
+
+.generated-form-group {
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 15px;
+}
+
+.info-massage {
+  color: #fff;
+  font-size: large;
+}
+
+.move-handle {
+  color: #ccc;
+  cursor: move;
+  width: 24px;
+  height: 24px;
+}
+
+.button-container {
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  button {
+    width: 200px;
+  }
+}
